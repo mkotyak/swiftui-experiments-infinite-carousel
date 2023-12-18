@@ -82,7 +82,7 @@ struct HomeView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .overlay(alignment: .bottom) {
-                PageControllView(
+                PageControlView(
                     totalPages: listOfPages.count,
                     currentPage: originalIndex(of: currentPage)
                 )

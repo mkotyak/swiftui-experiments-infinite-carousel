@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct PageControllView: UIViewRepresentable {
+struct PageControlView: UIViewRepresentable {
     var totalPages: Int
     var currentPage: Int
 
