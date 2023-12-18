@@ -81,10 +81,23 @@ struct HomeView: View {
                 }
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
+            .overlay(alignment: .bottom) {
+                PageControllView(
+                    totalPages: listOfPages.count,
+                    currentPage: originalIndex(of: currentPage)
+                )
+                .padding(.bottom, 15)
+            }
         }
     }
 
     private func fakeIndex(of page: Page) -> Int {
         fakedPages.firstIndex(of: page) ?? 0
+    }
+
+    private func originalIndex(of pageID: UUID) -> Int {
+        listOfPages.firstIndex { page in
+            page.id == pageID
+        } ?? 0
     }
 }
