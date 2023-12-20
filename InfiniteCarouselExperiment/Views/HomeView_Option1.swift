@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct HomeView: View {
+struct HomeView_Option1: View {
     @State private var currentPage: UUID = .init()
-    @State private var fakedPages: [Page] = []
+    @State private var extendedPages: [Page] = []
 
     private var defaultPages: [Page] = [.firstPage, .secondPage, .thirdPage]
 
@@ -12,12 +12,12 @@ struct HomeView: View {
             carouselView
         }
         .onAppear {
-            guard fakedPages.isEmpty else {
+            guard extendedPages.isEmpty else {
                 return
             }
 
             currentPage = defaultPages[0].id
-            fakedPages = [.thirdPage] + defaultPages + [.firstPage]
+            extendedPages = [.thirdPage] + defaultPages + [.firstPage]
         }
     }
 
@@ -29,16 +29,16 @@ struct HomeView: View {
 
     private var carouselView: some View {
         TabView(selection: $currentPage) {
-            ForEach(fakedPages) { page in
+            ForEach(extendedPages) { page in
                 RoundedRectangle(cornerRadius: 20)
                     .fill(page.color.gradient)
                     .padding(.horizontal, 20)
                     .tag(page.id)
                     .onDisappear {
-                        if currentPage == fakedPages.first?.id {
-                            currentPage = fakedPages[3].id
-                        } else if currentPage == fakedPages.last?.id {
-                            currentPage = fakedPages[1].id
+                        if currentPage == extendedPages.first?.id {
+                            currentPage = extendedPages[3].id
+                        } else if currentPage == extendedPages.last?.id {
+                            currentPage = extendedPages[1].id
                         }
                     }
             }
